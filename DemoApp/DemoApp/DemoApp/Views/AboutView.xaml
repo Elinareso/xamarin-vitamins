@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DemoApp.Views.AboutView"
+             xmlns:vm="clr-namespace:DemoApp.ViewModels"
+             xmlns:converters="clr-namespace:DemoApp.Core.Converters;assembly=DemoApp"
+             Title="{Binding Title}">
+
+    <ContentPage.BindingContext>
+        <vm:AboutViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <!--Page Level Resources: Compatibile with Xamarin Live Player -->
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackLayout BackgroundColor="{StaticResource Accent}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+                <ContentView Padding="0,40,0,40" VerticalOptions="FillAndExpand">
+                    <StackLayout>
+                        <Image Source="xamarin_logo.png" VerticalOptions="Center" HeightRequest="64" />
+                        <Label Text="Show More Info" WidthRequest="100"/>
+                        <Switch IsToggled="{Binding MoreInfo}" WidthRequest="100"/>
+                    </StackLayout>
+                </ContentView>
+            </StackLayout>
+        </StackLayout>
+        <ScrollView Grid.Row="1">
+            <StackLayout Orientation="Vertical" Padding="16,40,16,40" Spacing="10" IsVisible="{Binding MoreInfo, Converter={converters:InverseBooleanConverter}}">
+                <Label FontSize="22">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <FormattedString.Spans>
+                                <Span Text="AppName" FontAttributes="Bold" FontSize="22" />
+                                <Span Text=" " />
+                                <Span Text="1.0" ForegroundColor="{StaticResource LightTextColor}" />
+                            </FormattedString.Spans>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label FontSize="22">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <FormattedString.Spans>
+                                <Span Text="Device Name" FontAttributes="Bold" FontSize="22" />
+                                <Span Text=" " />
+                                <Span Text="{Binding DeviceName, Mode=OneTime}" ForegroundColor="{StaticResource LightTextColor}" />
+                            </FormattedString.Spans>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <FormattedString.Spans>
+                                <Span Text="This app is written in C# and native APIs using the" />
+                                <Span Text=" " />
+                                <Span Text="Xamarin Platform" FontAttributes="Bold" />
+                                <Span Text="." />
+                            </FormattedString.Spans>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <FormattedString.Spans>
+                                <Span Text="It shares code with its" />
+                                <Span Text=" " />
+                                <Span Text="iOS, Android, and Windows" FontAttributes="Bold" />
+                                <Span Text=" " />
+                                <Span Text="versions." />
+                            </FormattedString.Spans>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Button Margin="0,10,0,0" Text="Learn more"
+                        Command="{Binding OpenWebCommand}"
+                        BackgroundColor="{StaticResource Primary}"
+                        TextColor="White" />
+                <Button Margin="0,10,0,0" Text="Show Message From Platform"
+                        Command="{Binding ShowPlatformMessageCommand}"
+                        BackgroundColor="{StaticResource Primary}"
+                        TextColor="White" />
+            </StackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

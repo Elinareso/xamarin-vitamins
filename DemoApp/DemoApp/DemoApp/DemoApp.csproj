@@ -1,0 +1,44 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>pdbonly</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="sqlite-net-pcl" Version="1.4.118" />
+    <PackageReference Include="Xamarin.Essentials" Version="0.10.0-preview" />
+    <PackageReference Include="Xamarin.Forms" Version="3.1.0.697729" />  
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\AboutView.xaml.cs">
+      <DependentUpon>AboutView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\ItemDetailView.xaml.cs">
+      <DependentUpon>ItemDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\ItemsView.xaml.cs">
+      <DependentUpon>ItemsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\MainView.xaml.cs">
+      <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\MenuView.xaml.cs">
+      <DependentUpon>MenuView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\NewItemView.xaml.cs">
+      <DependentUpon>NewItemView.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Styles\AppTheme.xaml">
+      <Generator></Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+</Project>
